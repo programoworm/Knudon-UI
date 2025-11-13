@@ -7,7 +7,7 @@ export default function Home() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('http://135.13.10.95:8080/api/execute', {
+      const response = await fetch('/api/execute', {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain' },
         body: inputText,
