@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: knudon-frontend
+  namespace: knudon
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: knudon-frontend
+  template:
+    metadata:
+      labels:
+        app: knudon-frontend
+    spec:
+      containers:
+      - name: knudon-frontend
+        image: localhost:5000/knudon-fe:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80

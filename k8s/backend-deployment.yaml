@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: knudon-backend
+  namespace: knudon
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: knudon-backend
+  template:
+    metadata:
+      labels:
+        app: knudon-backend
+    spec:
+      containers:
+      - name: knudon-backend
+        image: localhost:5000/knudon-be:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20
